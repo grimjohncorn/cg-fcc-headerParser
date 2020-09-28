@@ -5,6 +5,12 @@
 var express = require('express');
 var app = express();
 
+if(process.env.NODE_ENV === 'development') {
+  //Set environment variables for Dev
+  const dotenv = require('dotenv').config()
+  console.log('Development is running')
+}
+
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
 var cors = require('cors');
@@ -25,8 +31,7 @@ app.get("/api/hello", function (req, res) {
 });
 
 
-
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+  console.log('Your app is listening on port ' + listener.address().port)
 });
